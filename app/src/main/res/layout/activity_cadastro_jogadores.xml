@@ -1,85 +1,59 @@
-package com.fadergs.appfut;
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroJogadoresActivity">
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+    <EditText
+        android:id="@+id/nome"
+        android:layout_width="308dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Nome do jogador"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-import java.util.ArrayList;
-import java.util.List;
+    <EditText
+        android:id="@+id/quantidade"
+        android:layout_width="308dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Número camisa"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
 
-public class TimeDAO {
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="310dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="76dp"
+        android:text="Adicionar Jogador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
 
-    public static void inserir(Context contexto, Time time){
-        Banco banco = new Banco(contexto);
-        SQLiteDatabase db = banco.getWritableDatabase();
+    <ListView
+        android:id="@+id/lista_jogadores"
+        android:layout_width="301dp"
+        android:layout_height="615dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-        ContentValues valores = new ContentValues();
-        valores.put( "nome", time.getNome() );
-
-        db.insert("times" , null , valores );
-
-    }
-    public static void editar(Context contexto, Time time){
-        Banco banco = new Banco(contexto);
-        SQLiteDatabase db = banco.getWritableDatabase();
-
-        ContentValues valores = new ContentValues();
-        valores.put( "nome", time.getNome() );
-
-        db.update("times", valores,
-                " id = " + time.getId(), null);
-
-    }
-
-    public static void excluir(Context contexto, int idTime){
-        Banco banco = new Banco(contexto);
-        SQLiteDatabase db = banco.getWritableDatabase();
-        db.delete("times", " id = " + idTime,
-                null);
-        db.delete("jogadores", " id_time = "+ idTime, null);
-    }
-
-
-    public static List<Time> getProdutos(Context contexto){
-        List<Time> lista = new ArrayList<>();
-        Banco banco = new Banco(contexto);
-        SQLiteDatabase db = banco.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM times ORDER BY nome",
-                null);
-        if ( cursor.getCount() > 0 ){
-            cursor.moveToFirst();
-            do{
-                Time p = new Time();
-                p.setId(  cursor.getInt( 0 ) );
-                p.setNome( cursor.getString( 1 ) );
-                lista.add( p );
-            }while ( cursor.moveToNext() );
-        }
-        return lista;
-    }
-
-    public static Time getTimeById(Context contexto, int idTime){
-        Banco banco = new Banco(contexto);
-        SQLiteDatabase db = banco.getReadableDatabase();
-
-        String sql = "SELECT * FROM times WHERE id = " + idTime;
-        Cursor cursor = db.rawQuery( sql ,null);
-
-        if ( cursor.getCount() > 0 ){
-            cursor.moveToFirst();
-
-            Time p = new Time();
-            p.setId(  cursor.getInt( 0 ) );
-            p.setNome( cursor.getString( 1 ) );
-
-            return p;
-        }else {
-            return null;
-        }
-    }
-
-}
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>
