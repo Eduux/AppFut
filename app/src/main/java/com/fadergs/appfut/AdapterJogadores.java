@@ -1,4 +1,4 @@
-package com.fadergs.futapp;
+package com.fadergs.appfut;
 
 import android.content.Context;
 import android.graphics.Color;
