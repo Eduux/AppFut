@@ -1,0 +1,11 @@
+<resources>
+    <string name="btnCadastrar">New team</string>
+    <string name="nomeTime">Name:</string>
+    <string name="nomeJogador">Name:</string>
+    <string name="camisaJogador">Shirt:</string>
+    <string name="labelnometime">Team name:</string>
+    <string name="labelnomejogador">Player name:</string>
+    <string name="labelcamisajogador">Shirt number:</string>
+    <string name="btnCadastrarJogadores">New player</string>
+    <string name="btnSalvarTime">Save team</string>
+</resources>
